@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: cyril_violins_local_docs
+    container_name: cyril_violins_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./cyril_violins:/app/cyril_violins:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
